@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+
+	<g>
+		<title>Layer 1</title>
+		<circle fill="#309169" stroke="#000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="430" cy="250" r="60" id="svg_4" />
+		<rect fill="#309169" stroke="#000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="40" y="240" width="430" height="20" id="svg_6" />
+		<circle fill="#309169" stroke="#000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="70" cy="250" r="60" id="svg_9" />
+	</g>
+</svg>
