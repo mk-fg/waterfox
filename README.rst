@@ -103,13 +103,15 @@ Intended to work around Firefox search plugins' limitation of not allowing
 non-encoded search queries, so any URL-building via search keywords is limited
 to GET/POST keywords only.
 
-This workaround is to run simple redirector httpd on localhost, which would
-translate and redirect e.g. ``/github-repo/mk-fg%2Fwaterfox`` from
-"mk-fg/waterfox" query to ``https://github.com/mk-fg/waterfox`` (this repo on github).
+This workaround is to run simple redirector httpd on localhost, so that
+e.g. ``gh mk-fg/waterfox`` query in url bar would translate to
+``localhost:8080/github-repo/mk-fg%2Fwaterfox`` (note how query gets
+url-escaped) and that'd redirect to ``https://github.com/mk-fg/waterfox``
+(this repo on github), undoing the query url-escaping in this simple case.
 
-Any kind of more complex shortcut-expanding and URL-making logic can be added
-here later as well, limited only by imagination and convenience, potentially
-turning firefox search bar into some kind of command line.
+Any kind of more complex shortcut-expanding and URL-making logic can be
+added here later as well, limited only by imagination and convenience,
+potentially turning firefox search bar into some kind of command line.
 
 Written in OCaml_ to be relatively fast and liteweight.
 
