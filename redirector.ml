@@ -19,6 +19,7 @@ let cli_bind = ref "localhost:8888"
 let cli_oneshot = ref false
 let cli_conn_queue = ref 30
 let cli_conn_timeout = ref 3.
+let cli_inactivity_timeout = ref 0
 
 (* Mapping of keywords to sites *)
 (* Currently only for simple string-replacement/translation,
@@ -31,10 +32,14 @@ let () = (
 
 (* Command-line args processing *)
 let () = Arg.parse
-	[ ("-b", Arg.Set_string cli_bind, ": host:port to bind listen socket to, ignored with systemd socket activation");
-		("-1", Arg.Set cli_oneshot, ": exit after handling first connection/request") ]
+	[ ("-b", Arg.Set_string cli_bind,
+			"host:port -- endpoint to bind listen socket to, ignored with systemd socket activation");
+		("-t", Arg.Set_int cli_inactivity_timeout,
+			"seconds -- inactivity-stop timeout (no conns/requests), useful with systemd socket activation");
+		("-1", Arg.Set cli_oneshot,
+			"-- exit after handling first connection/request, for testing purposes") ]
 	(fun arg -> raise (Arg.Bad ("Bogus extra arg : " ^ arg)))
-	("Usage: " ^ Sys.argv.(0) ^ " [-b bind] [-1]\
+	("Usage: " ^ Sys.argv.(0) ^ " [-b host:port] [-t seconds] [-1]\
 		\n\nStub httpd to translate incoming browser-search queries to external redirects.\
 		\nCan be started by systemd.socket unit, with ListenStream= and Accept=no mode.\n")
 
@@ -87,6 +92,9 @@ let rec eintr_loop f x =
 	try f x with Unix.Unix_error (Unix.EINTR, _, _) -> eintr_loop f x
 let fd_of_int (x: int) : Unix.file_descr = Obj.magic x
 
+let reset_inactivity_timer () =
+	if !cli_inactivity_timeout > 0 then ignore (Unix.alarm !cli_inactivity_timeout)
+
 let tcp_conn_log conn_ep closed = ()
 (* let tcp_conn_log conn_ep closed =
  * 	let addr_raw, port =
@@ -115,9 +123,15 @@ let tcp_server_bind_listen ep queue =
 	with e -> Unix.close sock; raise e
 
 let tcp_server sock conn_handler =
-	ignore (Sys.signal Sys.sigpipe Sys.Signal_ignore);
+	let sig_done = (Sys.Signal_handle (fun sig_n -> exit 0)) in
+		Sys.set_signal Sys.sigpipe Sys.Signal_ignore;
+		Sys.set_signal Sys.sigalrm sig_done;
+		Sys.set_signal Sys.sigterm sig_done;
+		Sys.set_signal Sys.sigint sig_done;
+	reset_inactivity_timer ();
 	let rec conn_accept () =
 		let conn, conn_ep = eintr_loop Unix.accept sock in
+		reset_inactivity_timer ();
 		let conn_handle () =
 			tcp_conn_log conn_ep false;
 			conn_handler conn conn_ep in

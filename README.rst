@@ -113,18 +113,22 @@ Any kind of more complex shortcut-expanding and URL-making logic can be
 added here later as well, limited only by imagination and convenience,
 potentially turning firefox search bar into some kind of command line.
 
-Written in OCaml_ to be relatively fast and liteweight.
+Written in OCaml_ to be simple, but relatively fast (native binary)
+and liteweight (~1M).
 
 Can be compiled with::
 
   % ocamlopt -o redirector -O2 unix.cmxa str.cmxa redirector.ml
   % strip redirector
 
-| Run with -h/--help for info on command-line options.
-| Supports systemd socket-activation mode to only start on-demand.
-|
+Run with -h/--help for info on command-line options.
+
+Supports systemd socket-activation mode to only start on-demand and exit after
+specified timeout of inactivity, to avoid hanging around if rarely used
+(see ff-redirector.socket + .service in `mk-fg/de-setup repo`_ for unit examples).
 
 .. _OCaml: https://ocaml.org/
+.. _mk-fg/de-setup repo: https://github.com/mk-fg/de-setup
 
 
 url-handler.c
@@ -164,7 +168,7 @@ print additional info on scheme-matching process)
 Assign produced binary as a handler for clicked link, and it will run e.g.
 ``/opt/bin/mail-client mailto:someone@gmail.com`` for all "mailto:" links from now on.
 
-Being compiled C code, it is a very fast and liteweight wrapper.
+Being compiled C code, it is a very fast (<1ms) and light wrapper (15K).
 
 .. _xdg-open: https://wiki.archlinux.org/index.php/Default_Applications
 .. _user.js: http://kb.mozillazine.org/User.js_file
