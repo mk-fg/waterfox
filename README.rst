@@ -65,7 +65,7 @@ white screen is an acceptable default is/was probably blind (by now) :)
 proxy-toggle.local
 ``````````````````
 
-Icons' tweak for `proxy-toggle`_ addon, replacing black ones with green/red
+Icons' tweak for proxy-toggle_ addon, replacing black ones with green/red
 ones, depending on whether proxy is enabled/disabled (note - red=enabled).
 
 Useful with any dark background theme, which makes default icons nearly
@@ -77,7 +77,7 @@ invisible, plus color-coding is nice.
 add-custom-search-engine.local
 ``````````````````````````````
 
-Replacement for `add-custom-search-engine`_ addon, only changing manifest.json
+Replacement for add-custom-search-engine_ addon, only changing manifest.json
 to add keyboard shortcut to be used instead of a button.
 
 Might be in upstream at some point, see `add-custom-search-engine/pull/13`_.
@@ -125,6 +125,49 @@ Run with -h/--help for info on command-line options.
 .. _OCaml: https://ocaml.org/
 
 
+url-handler.c
+`````````````
+
+Strict URL-scheme-dispatcher binary for browser or similar link-clicky app.
+
+Intended to be assigned as a handler for e.g. "magnet:" and all other
+URL-schemes, to run some specific compiled-in app, depending on scheme in passed
+URL, kinda like xdg-open_.
+
+It's especially handy to have single app for all of them with AppArmor and
+similar containers, where each external binary would have to be whitelisted.
+This one can be assigned with no confinement there, and be reasonably relied
+upon to only run list of apps that were compiled-in, with URL as the only arg.
+
+To assign handler app to a protocol in firefox,
+first add protocol scheme via about:config or `user.js`_::
+
+  user_pref("network.protocol-handler.expose.magnet", false);
+
+| Now upon clicking that protocol link, FF will ask to specify handler app.
+| (can be changed later under "Preferences - General - Applications")
+|
+
+Build this handler-wrapper with full list of all necessary handlers,
+e.g. "mytorrent" for "magnet:" and "/opt/bin/mail-client" for "mailto:" in this example::
+
+  % gcc -O2 \
+    -Dh=magnet:mytorrent:mailto:/opt/bin/mail-client \
+    -o url-handler url-handler.c
+  % strip url-handler
+
+(there's also an extra -Ddebug option to build it with "verbose mode" and
+print additional info on scheme-matching process)
+
+Assign produced binary as a handler for clicked link, and it will run e.g.
+``/opt/bin/mail-client mailto:someone@gmail.com`` for all "mailto:" links from now on.
+
+Being compiled C code, it is a very fast and liteweight wrapper.
+
+.. _xdg-open: https://wiki.archlinux.org/index.php/Default_Applications
+.. _user.js: http://kb.mozillazine.org/User.js_file
+
+
 
 Links to other external stuff
 -----------------------------
@@ -166,7 +209,7 @@ which allowed much more customization and had many other diffs in general.
   | For pre-58 firefox only, dumps opened tabs and data for a bunch of old addons.
   | Generally useful for tab-hoarding and extensions with complex configurations/states.
 
-- `firefox-homepage-generator`_ - old firefox homepage generator.
+- firefox-homepage-generator_ - old firefox homepage generator.
 
   Uses profile bookmarks and places dbs plus some other local data to produce
   custom internet-index page with a bunch of links to browse.
