@@ -120,7 +120,9 @@ Can be compiled with::
   % ocamlopt -o redirector -O2 unix.cmxa str.cmxa redirector.ml
   % strip redirector
 
-Run with -h/--help for info on command-line options.
+| Run with -h/--help for info on command-line options.
+| Supports systemd socket-activation mode to only start on-demand.
+|
 
 .. _OCaml: https://ocaml.org/
 

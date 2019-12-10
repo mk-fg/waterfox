@@ -31,10 +31,12 @@ let () = (
 
 (* Command-line args processing *)
 let () = Arg.parse
-	[ ("-b", Arg.Set_string cli_bind, ": host:port to bind listen socket to");
-		("-1", Arg.Set cli_oneshot, ": exit after handling first request") ]
+	[ ("-b", Arg.Set_string cli_bind, ": host:port to bind listen socket to, ignored with systemd socket activation");
+		("-1", Arg.Set cli_oneshot, ": exit after handling first connection/request") ]
 	(fun arg -> raise (Arg.Bad ("Bogus extra arg : " ^ arg)))
-	("usage: " ^ Sys.argv.(0) ^ " [-b bind] [-1]")
+	("Usage: " ^ Sys.argv.(0) ^ " [-b bind] [-1]\
+		\n\nStub httpd to translate incoming browser-search queries to external redirects.\
+		\nCan be started by systemd.socket unit, with ListenStream= and Accept=no mode.\n")
 
 let host, port =
 	let re = Str.regexp "^\\(.*\\):\\([0-9]+\\)$" in
@@ -83,6 +85,7 @@ let try_finally f x finally y =
 	let res = try f x with e -> finally y; raise e in finally y; res
 let rec eintr_loop f x =
 	try f x with Unix.Unix_error (Unix.EINTR, _, _) -> eintr_loop f x
+let fd_of_int (x: int) : Unix.file_descr = Obj.magic x
 
 let tcp_conn_log conn_ep closed = ()
 (* let tcp_conn_log conn_ep closed =
@@ -95,6 +98,14 @@ let tcp_conn_log conn_ep closed = ()
  * 	(Printf.printf "conn %s %s:%d\n%!" state addr port) *)
 
 let tcp_server_bind_listen ep queue =
+	(* Try to get socket from systemd first *)
+	try
+		let pid = int_of_string (Unix.getenv "LISTEN_PID") in
+		let fd_max = int_of_string (Unix.getenv "LISTEN_FDS") in
+		if Unix.getpid () != pid then raise Not_found else
+		if fd_max = 1 then fd_of_int 3 else raise (Arg.Bad "Too many fds passed from systemd")
+	with Not_found | Failure _ ->
+	(* Otherwise bind it normally *)
 	let sock = Unix.socket Unix.PF_INET Unix.SOCK_STREAM 0 in
 	try
 		Unix.setsockopt sock Unix.SO_REUSEADDR true;
@@ -126,7 +137,7 @@ let conn_handler =
 		let select () = Unix.select [conn] [] [conn] !cli_conn_timeout in
 		let rec buff_recv pos =
 			let r, w, x = eintr_loop select () in
-			if List.length x > 0 then 0 else
+			if List.length x > 0 || List.length r < 1 then 0 else
 				let recv () = Unix.recv conn buff pos (buff_len - pos) [] in
 				let pos = pos + eintr_loop recv () in
 				try Bytes.index buff '\n' with Not_found -> buff_recv pos in
