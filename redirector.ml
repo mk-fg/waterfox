@@ -20,6 +20,7 @@ let cli_oneshot = ref false
 let cli_conn_queue = ref 30
 let cli_conn_timeout = ref 3.
 let cli_inactivity_timeout = ref 0
+let cli_req_line_max_len = ref 2048 (* for "GET <url> HTTP/x.y" *)
 
 (* Mapping of keywords to sites *)
 (* Currently only for simple string-replacement/translation,
@@ -33,7 +34,8 @@ let () = (
 (* Command-line args processing *)
 let () = Arg.parse
 	[ ("-b", Arg.Set_string cli_bind,
-			"host:port -- endpoint to bind listen socket to, ignored with systemd socket activation");
+			Printf.sprintf "host:port -- endpoint to bind listen socket to \
+				(default: %s), ignored with systemd socket activation" !cli_bind );
 		("-t", Arg.Set_int cli_inactivity_timeout,
 			"seconds -- inactivity-stop timeout (no conns/requests), useful with systemd socket activation");
 		("-1", Arg.Set cli_oneshot,
@@ -111,7 +113,8 @@ let tcp_server_bind_listen ep queue =
 		let pid = int_of_string (Unix.getenv "LISTEN_PID") in
 		let fd_max = int_of_string (Unix.getenv "LISTEN_FDS") in
 		if Unix.getpid () != pid then raise Not_found else
-		if fd_max = 1 then fd_of_int 3 else raise (Arg.Bad "Too many fds passed from systemd")
+		if fd_max = 1 then fd_of_int 3 else
+			raise (Arg.Bad "Too many fds passed from systemd")
 	with Not_found | Failure _ ->
 	(* Otherwise bind it normally *)
 	let sock = Unix.socket Unix.PF_INET Unix.SOCK_STREAM 0 in
@@ -123,11 +126,7 @@ let tcp_server_bind_listen ep queue =
 	with e -> Unix.close sock; raise e
 
 let tcp_server sock conn_handler =
-	let sig_done = (Sys.Signal_handle (fun sig_n -> exit 0)) in
-		Sys.set_signal Sys.sigpipe Sys.Signal_ignore;
-		Sys.set_signal Sys.sigalrm sig_done;
-		Sys.set_signal Sys.sigterm sig_done;
-		Sys.set_signal Sys.sigint sig_done;
+	Sys.set_signal Sys.sigpipe Sys.Signal_ignore;
 	reset_inactivity_timer ();
 	let rec conn_accept () =
 		let conn, conn_ep = eintr_loop Unix.accept sock in
@@ -144,7 +143,7 @@ let tcp_server sock conn_handler =
 
 let conn_handler =
 	let re_req = Str.regexp_case_fold "^GET /\\([^ /]+\\)/\\([^ ]+\\) HTTP" in
-	let buff_len = 2048 in
+	let buff_len = !cli_req_line_max_len in
 	let buff = Bytes.create buff_len in
 	( fun conn conn_ep ->
 		Unix.set_nonblock conn;
@@ -166,8 +165,12 @@ let conn_handler =
 			ignore (eintr_loop send ()) )
 
 let () =
+	let sig_done = (Sys.Signal_handle (fun sig_n -> exit 0)) in
+		Sys.set_signal Sys.sigalrm sig_done;
+		Sys.set_signal Sys.sigterm sig_done;
+		Sys.set_signal Sys.sigint sig_done;
 	let addr = (Unix.gethostbyname host).h_addr_list.(0) in
 	let sock_ep = Unix.ADDR_INET (addr, port) in
 	let sock = tcp_server_bind_listen sock_ep !cli_conn_queue in
 	let server () = tcp_server sock conn_handler in
-	Unix.handle_unix_error server () ;;
+	Unix.handle_unix_error server ()
