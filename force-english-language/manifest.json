@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+	"name": "force-english-language",
+	"description": "Force browser to identify itself as using english language",
+	"version": "1",
+
+	"content_scripts": [{
+			"matches": ["<all_urls>"],
+			"all_frames": true,
+			"run_at": "document_start",
+			"js": ["content.js"] }],
+	"background": {"scripts": ["background.js"]},
+
+  "permissions": [
+		"webRequest", "webRequestBlocking", "<all_urls>" ],
+
+	"applications": {
+		"gecko": {
+			"id": "force-english-language@fraggod.net",
+			"strict_min_version": "68.0"
+		}
+	}
+}

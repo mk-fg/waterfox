@@ -3,7 +3,6 @@
 	"name": "new-tab",
 	"description": "Simple home.html for every new tab page",
 	"version": "2",
-	"chrome_settings_overrides": {},
 	"chrome_url_overrides": {"newtab": "home.html"},
   "permissions": ["browserSettings"],
 	"applications": {

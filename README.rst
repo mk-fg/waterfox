@@ -62,6 +62,23 @@ white screen is an acceptable default is/was probably blind (by now) :)
 .. _this handy comparison page: https://jm42.github.io/compare-user.js/
 
 
+force-english-language
+``````````````````````
+
+Forces Accept-Language and navigator.language(s) header/js values to identify
+browser as using english locale, despite privacy.resistFingerprinting setting
+(from e.g. `ghacks user.js`_) which hides this data.
+
+Helps to avoid sites presenting themselves in inconsistent languages based on IP
+or whatever else by default.
+
+There is languageswitch_ addon which allows to change this lang on-the-fly,
+but it doesn't work well with privacy.resistFingerprinting (e.g. only modifies header,
+but does not add it), and is a lot more heavyweight than 10 JS lines here.
+
+.. _languageswitch: https://addons.mozilla.org/en-US/firefox/addon/languageswitch/
+
+
 proxy-toggle.local
 ``````````````````
 
