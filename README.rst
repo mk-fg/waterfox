@@ -58,8 +58,29 @@ hence that simple option-check in every new tab.
 Main purpose though is to just make new tabs non-white, as whoever thought that
 white screen is an acceptable default was (or is) probably blind (by now) :)
 
+Tabs will still momentarily flash white on opening though,
+which can be fixed by something like this in `userContent.css`_::
+
+  @-moz-document url-prefix(about:blank) {
+    body { background-color:#18343f !important; }
+  }
+
+None of this would affect browser-start page btw, which can be changed via
+browser.startup.page + browser.startup.homepage in user.js, with latter being set to
+something like "moz-extension://a1ae59a3-e618-4e86-441f-7202f3acf593/init.html",
+with extension UUID there from about:debugging or such.
+
+Also, `userChrome.css`_ can be used to set bg color of that browser-start page::
+
+  .browserContainer { background-color: #18343f !important; }
+
+Not sure if it has to be this complicated to just have browser display something
+you want in all tabs (and not blind you), but that's what seem to work atm.
+
 .. _ghacks user.js: https://github.com/ghacksuserjs/ghacks-user.js/
 .. _this handy comparison page: https://jm42.github.io/compare-user.js/
+.. _UserContent.css: http://kb.mozillazine.org/index.php?title=UserContent.css
+.. _userChrome.css: https://www.userchrome.org/
 
 
 force-english-language
