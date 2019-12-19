@@ -15,7 +15,7 @@
 
 
 (* Command-line option defaults *)
-let cli_bind = ref "localhost:8888"
+let cli_bind = ref "localhost:8803"
 let cli_oneshot = ref false
 let cli_conn_queue = ref 30
 let cli_conn_timeout = ref 3.
