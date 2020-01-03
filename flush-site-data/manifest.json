@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+	"name": "flush-site-data",
+	"description": "Clears cookies, localStorage, sessionStorage, indexedDB, cache, serviceWorkers for all tabs",
+	"icons": {"64": "icon.svg"},
+	"version": "1",
+  "permissions": ["notifications", "browsingData", "tabs", "<all_urls>"],
+	"background": {"scripts": ["background.js"]},
+	"applications": {
+		"gecko": {
+			"id": "flush-site-data@fraggod.net",
+			"strict_min_version": "68.0"
+		}
+	},
+	"browser_action": {
+		"default_title": "Flush Site Data",
+		"default_icon": {"64": "icon.svg"}
+	},
+  "commands": {
+		"_execute_browser_action": {
+			"suggested_key": {"default": "Alt+C"},
+			"description": "Flush Site Data"
+		}
+  }
+}
