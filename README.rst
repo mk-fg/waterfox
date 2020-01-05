@@ -9,7 +9,7 @@ waterfox
 Description
 -----------
 
-Various extensions and hacks that I use with `Mozilla Firefox browser`_
+Various extensions and hacks that I use with `Mozilla Firefox Browser`_
 forks like Waterfox_.
 
 Note that while Firefox is an okay modern browser, I wouldn't recommend using it
@@ -22,7 +22,7 @@ One important feature of such forks is that they allow tinkering with browser
 extensions freely, instead of forcing them to be installed only from "official"
 place as-is, locked-down with mandatory centralized signing.
 
-.. _Mozilla Firefox browser: https://www.mozilla.org/en-US/firefox/new/
+.. _Mozilla Firefox Browser: https://www.mozilla.org/en-US/firefox/new/
 .. _Waterfox: https://www.waterfox.net/
 .. _Ungoogled Chromium: https://ungoogled-software.github.io/
 
@@ -281,7 +281,7 @@ which allowed much more customization and had many other diffs in general.
 
 - `ff_backup`_ - browser state tracking script, to auto-commit it into git by cron.
 
-  | For pre-58 firefox only, dumps opened tabs and data for a bunch of old addons.
+  | For pre-57 firefox only, dumps opened tabs and data for a bunch of old addons.
   | Generally useful for tab-hoarding and extensions with complex configurations/states.
 
 - firefox-homepage-generator_ - old firefox homepage generator.
