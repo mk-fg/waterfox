@@ -306,6 +306,10 @@ which allowed much more customization and had many other diffs in general.
   but less needed now with Certificate Transparency efforts and Let's Encrypt,
   both mitigating main issues with such centralized model somewhat.
 
+  See `Certificate Pinner`_ addon for a modern, simplier and a bit more manual
+  opt-in solution for this task.
+
 .. _ff_backup: https://github.com/mk-fg/fgtk#ff_backup
 .. _firefox-homepage-generator: https://github.com/mk-fg/firefox-homepage-generator
 .. _convergence: https://github.com/mk-fg/convergence
+.. _Certificate Pinner: https://gitlab.com/heurekus/certificate-pinner-for-firefox/
