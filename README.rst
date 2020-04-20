@@ -107,6 +107,9 @@ Adds button/hotkey (default - Alt+C) to flush all cache, cookies, localStorage,
 sessionStorage, indexedDB and serviceWorkers data - i.e. all tracking stuff that
 sites store in browser.
 
+Alternative to Ctrl + Shift + Delete firefox hotkey, but without prompting/checkboxes,
+and also clearing sessionStorage in all tabs, not just history and persistent data.
+
 | Does not ask any questions or limits its scope in any way.
 | Useful to log out of everything, like closing/reopening private browser window.
 |
@@ -124,7 +127,7 @@ Most of them limit scope to some hacky list of domains derived from active tab,
 ignore stuff like localStorage, cache, indexedDB, or don't bother clearing
 sessionStorage in tabs.
 
-Issues notification on success, and does console.error() on any failure.
+Issues 2s notification popup on success, and does console.error() on any failure.
 
 Available on AMO as well: `addons.mozilla.org/flush-site-data`_
 

@@ -3,7 +3,7 @@
 	"name": "flush-site-data",
 	"description": "Clears cookies, localStorage, sessionStorage, indexedDB, cache, serviceWorkers for all tabs",
 	"icons": {"64": "icon.svg"},
-	"version": "1",
+	"version": "4",
   "permissions": ["notifications", "browsingData", "tabs", "<all_urls>"],
 	"background": {"scripts": ["background.js"]},
 	"applications": {
