@@ -146,18 +146,6 @@ nearly invisible, plus color-coding is nice.
 .. _proxy-toggle: https://addons.mozilla.org/en-US/firefox/addon/proxy-toggle/
 
 
-add-custom-search-engine.local
-``````````````````````````````
-
-Replacement for add-custom-search-engine_ addon, only changing manifest.json
-to add keyboard shortcut to be used instead of a button.
-
-Might be in upstream at some point, see `add-custom-search-engine/pull/13`_.
-
-.. _add-custom-search-engine: https://addons.mozilla.org/en-US/firefox/addon/add-custom-search-engine/
-.. _add-custom-search-engine/pull/13: https://github.com/evilpie/add-custom-search-engine/pull/13
-
-
 
 Misc helpers
 ------------
