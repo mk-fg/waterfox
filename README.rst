@@ -48,10 +48,9 @@ new-tab
 ```````
 
 Simple new-tab homepage with some non-eye-burning background image and JS checks
-for some parameters in `ghacks user.js`_ or similar must-have sane settings preset
-(see `this handy comparison page`_ for more).
+for some parameters in `arkenfox/user.js`_ or similar must-have settings preset.
 
-I install ghacks as vendor.js, so it'd be easy to diff or override as necessary,
+I install preset as vendor.js, so it'd be easy to diff or override as necessary,
 but if waterfox screws up loading that, it might not be immediately obvious,
 hence that simple option-check in every new tab.
 
@@ -77,8 +76,7 @@ Also, `userChrome.css`_ can be used to set bg color of that browser-start page::
 Not sure if it has to be this complicated to just have browser display something
 you want in all tabs (and not blind you), but that's what seem to work atm.
 
-.. _ghacks user.js: https://github.com/ghacksuserjs/ghacks-user.js/
-.. _this handy comparison page: https://jm42.github.io/compare-user.js/
+.. _arkenfox/user.js: https://github.com/arkenfox/user.js
 .. _UserContent.css: http://kb.mozillazine.org/index.php?title=UserContent.css
 .. _userChrome.css: https://www.userchrome.org/
 
@@ -88,7 +86,7 @@ force-english-language
 
 Forces Accept-Language and navigator.language(s) header/js values to identify
 browser as using english locale, despite privacy.resistFingerprinting setting
-(from e.g. `ghacks user.js`_) which hides this data.
+(from e.g. `arkenfox/user.js`_) which hides this data.
 
 Helps to avoid sites presenting themselves in inconsistent languages based on
 IP or whatever else by default.
@@ -174,7 +172,7 @@ added here later as well, limited only by imagination and convenience,
 potentially turning firefox search bar into some kind of command line.
 
 Written in OCaml_ to be simple, but relatively fast (native binary)
-and liteweight (~1M).
+and not too heavy on memory use (~1M), unlike more typical scripts.
 
 Can be compiled with::
 
@@ -228,7 +226,7 @@ print additional info on scheme-matching process)
 Assign produced binary as a handler for clicked link, and it will run e.g.
 ``/opt/bin/mail-client mailto:someone@gmail.com`` for all "mailto:" links from now on.
 
-Being compiled C code, it is a very fast (<1ms) and light wrapper (15K).
+Being compiled C code, it is a very fast (<1ms) and light wrapper (15K with glibc).
 
 .. _xdg-open: https://wiki.archlinux.org/index.php/Default_Applications
 .. _user.js: http://kb.mozillazine.org/User.js_file
@@ -246,7 +244,7 @@ Links to other external stuff
   of xdg junk dirs, profile and ~/Downloads, no access to devices, as well as
   many other limitations for stuff I don't use myself.
 
-- My `Waterfox-Current Arch Linux PKGBUILD`_
+- Local `Waterfox Arch Linux PKGBUILD`_
 
   | Builds it from .tar.gz release archive, not the humongous and slow git checkout.
   | Can have some local patches/tweaks.
@@ -258,8 +256,8 @@ Links to other external stuff
   needed with raw systemd-run interface.
 
 .. _ff_mozlz4: https://github.com/mk-fg/fgtk#ff_mozlz4
-.. _AppArmor profile: https://github.com/mk-fg/apparmor-profiles/blob/master/profiles/usr.bin.firefox
-.. _Waterfox-Current Arch Linux PKGBUILD: https://github.com/mk-fg/archlinux-pkgbuilds/tree/master/waterfox-current
+.. _AppArmor profile: https://github.com/mk-fg/apparmor-profiles/blob/master/profiles/waterfox
+.. _Waterfox Arch Linux PKGBUILD: https://github.com/mk-fg/archlinux-pkgbuilds/tree/master/waterfox
 .. _cgrc: https://github.com/mk-fg/fgtk#cgrc
 
 
