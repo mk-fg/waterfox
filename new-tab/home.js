@@ -22,18 +22,22 @@ let check_ghacks_userjs = c => {
 	check_ghacks_override() }
 
 let check_fs_access = c => {
-	// Tries to load random file:// path from local fs which browser shouldn't have access to
+	// Tries to load random file:// path from local fs which browser shouldn't have access to.
+	// Requires fs_access_check.c and fs_access_check.json manifest built/installed as well.
+	// fetch(file://...) can't be used here due to https://bugzilla.mozilla.org/show_bug.cgi?id=1487353
 	let show_fail_banner = c => {
 		document.body.classList.add('alert')
 		document.body.innerHTML = '<h2>Browser confinement profile is BROKEN</h2>' }
-	let check_executed = false,
-		check_path = '/usr/share/doc/systemd/README'
+	let check_executed = false
 	let check_fs_access = async c => {
-		let res
-		try { res = await fetch(`file://${check_path}`) } catch (err) { }
-		if (res && (res.ok || res.status)) show_fail_banner()
+		let check = false;
+		try {
+			check = await browser.permissions.contains({'permissions': ['nativeMessaging']})
+			if (check) check = await browser.runtime.sendNativeMessage('fs_access_check', true)
+		} catch (err) { check = false }
+		if (check !== true) show_fail_banner()
 		check_executed = true }
-	setTimeout(t => check_executed || show_fail_banner(), 200)
+	setTimeout(t => check_executed || show_fail_banner(), 300)
 	check_fs_access() }
 
 window.onload = c => {

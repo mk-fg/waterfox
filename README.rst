@@ -49,11 +49,12 @@ new-tab
 
 Simple new-tab homepage with some non-eye-burning background image and JS checks
 for some parameters in `arkenfox/user.js`_ or similar must-have settings preset,
-as well as testing AppArmor or similar confinement (via random file://... fetch).
+as well as testing AppArmor or similar confinement (via nativeMessaging_ call).
 
 I install user.js preset as vendor.js, so it'd be easy to diff or override via
 user.js as necessary, but if waterfox screws up loading that, it might not be
-immediately obvious, hence that simple option-check in every new tab.
+immediately obvious, and same for LSM profiles, hence these simple checks in
+every new tab, where problem would be immediately obvious.
 
 Main purpose though is to just make new tabs non-white, as whoever thought that
 white screen is an acceptable default was (or is) probably blind (by now) :)
@@ -78,7 +79,13 @@ Not sure if it has to be this complicated to just have browser display something
 you want in all tabs (and not blind you), but that's what seem to work atm
 (as of 2019, and still works for me in 2021, but maybe not all-necessary anymore).
 
+fs-access-check binary for confinement-test should be built from fs_access_check.c
+(see comments at the top there) and installed along with fs_access_check.json manifest
+for nativeMessaging API calls to work - required since FF (rightfully) blocks any
+direct file:// access from extensions.
+
 .. _arkenfox/user.js: https://github.com/arkenfox/user.js
+.. _nativeMessaging: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging
 .. _UserContent.css: http://kb.mozillazine.org/index.php?title=UserContent.css
 .. _userChrome.css: https://www.userchrome.org/
 

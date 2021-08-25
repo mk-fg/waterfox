@@ -1,0 +1,7 @@
+{
+	"name": "fs_access_check",
+	"description": "Test local-fs access for browser container",
+	"path": "/home/fraggod/.waterfox/fs-access-check",
+	"type": "stdio",
+	"allowed_extensions": ["new-tab@fraggod.net"]
+}
