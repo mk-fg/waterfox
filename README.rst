@@ -48,11 +48,12 @@ new-tab
 ```````
 
 Simple new-tab homepage with some non-eye-burning background image and JS checks
-for some parameters in `arkenfox/user.js`_ or similar must-have settings preset.
+for some parameters in `arkenfox/user.js`_ or similar must-have settings preset,
+as well as testing AppArmor or similar confinement (via random file://... fetch).
 
-I install preset as vendor.js, so it'd be easy to diff or override as necessary,
-but if waterfox screws up loading that, it might not be immediately obvious,
-hence that simple option-check in every new tab.
+I install user.js preset as vendor.js, so it'd be easy to diff or override via
+user.js as necessary, but if waterfox screws up loading that, it might not be
+immediately obvious, hence that simple option-check in every new tab.
 
 Main purpose though is to just make new tabs non-white, as whoever thought that
 white screen is an acceptable default was (or is) probably blind (by now) :)
@@ -74,7 +75,8 @@ Also, `userChrome.css`_ can be used to set bg color of that browser-start page::
   .browserContainer { background-color: #18343f !important; }
 
 Not sure if it has to be this complicated to just have browser display something
-you want in all tabs (and not blind you), but that's what seem to work atm.
+you want in all tabs (and not blind you), but that's what seem to work atm
+(as of 2019, and still works for me in 2021, but maybe not all-necessary anymore).
 
 .. _arkenfox/user.js: https://github.com/arkenfox/user.js
 .. _UserContent.css: http://kb.mozillazine.org/index.php?title=UserContent.css
