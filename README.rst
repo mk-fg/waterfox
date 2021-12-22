@@ -241,6 +241,24 @@ Being compiled C code, it is a very fast (<1ms) and light wrapper (15K with glib
 .. _user.js: http://kb.mozillazine.org/User.js_file
 
 
+bookmarklets.js
+```````````````
+
+Random bookmarklets_ collected from somewhere or ad-hoc made to fix some local issue.
+
+These are basically simple UserJS_ scripts that run on-demand (via button) in
+page context to tweak styles or layout, without the hassle of being tied to
+specific domains or always running there, potentially slowing stuff down or
+breaking things.
+
+Great for a trivial in-page automation ops like "remove all images",
+"clear all position=fixed elements" or "make text black", and very easy
+to make and edit on-the-fly for whatever comes to mind.
+
+.. _bookmarklets: https://en.wikipedia.org/wiki/Bookmarklet
+.. _UserJS: https://openuserjs.org/
+
+
 
 Links to other external stuff
 -----------------------------
