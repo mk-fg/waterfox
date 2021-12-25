@@ -9,9 +9,11 @@ browser.commands.onCommand.addListener(command => {
 			browser.bookmarks.getChildren('toolbar_____')
 				.then(bms => bm_idx < bms.length && bms[bm_idx].url) ])
 
-		.then( ([[tab], url]) => url.match(/^javascript:/) ?
-			browser.tabs.executeScript(tab.id, {code: url.slice(11)}) :
-			browser.tabs.update(tab.id, {url: url}) )
+		.then(([[tab], url]) => {
+			if (!url) throw `Could not get bookmark toolbar URL with index=${bm_idx}`
+			url.match(/^javascript:/) ?
+				browser.tabs.executeScript(tab.id, {code: url.slice(11)}) :
+				browser.tabs.update(tab.id, {url: url}) })
 
 		.catch(err => browser.notifications.create(null, { 'type': 'basic', 'priority': 1,
 			'title': `Bookmark Hotkey ${bm_n} failed to work`, 'message': `ERROR: ${err}` }))
