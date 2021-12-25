@@ -5,7 +5,7 @@
 	"icons": {"64": "icon.svg"},
 	"version": "4",
   "permissions": ["notifications", "browsingData", "tabs", "<all_urls>"],
-	"background": {"scripts": ["background.js"]},
+	"background": {"scripts": ["flush-site-data.js"]},
 	"applications": {
 		"gecko": {
 			"id": "flush-site-data@fraggod.net",

@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+	"name": "[local] bookmark-toolbar-hotkeys",
+	"description": "Run bookmark(-lets) from toolbar using Alt+F# hotkeys",
+	"version": "1",
+	"permissions": ["notifications", "tabs", "bookmarks", "<all_urls>"],
+	"background": {"scripts": ["bookmark-toolbar-hotkeys.js"]},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "bookmark-toolbar-hotkeys@fraggod.net",
+			"strict_min_version": "68.0"
+		}
+	},
+	"commands": {
+		"bookmark-toolbar-hotkey-1": {"description": "Bookmark 1", "suggested_key": {"default": "Alt+F1"}},
+		"bookmark-toolbar-hotkey-2": {"description": "Bookmark 2", "suggested_key": {"default": "Alt+F2"}},
+		"bookmark-toolbar-hotkey-3": {"description": "Bookmark 3", "suggested_key": {"default": "Alt+F3"}},
+		"bookmark-toolbar-hotkey-4": {"description": "Bookmark 4", "suggested_key": {"default": "Alt+F4"}},
+		"bookmark-toolbar-hotkey-5": {"description": "Bookmark 5", "suggested_key": {"default": "Alt+F5"}},
+		"bookmark-toolbar-hotkey-6": {"description": "Bookmark 6", "suggested_key": {"default": "Alt+F6"}},
+		"bookmark-toolbar-hotkey-7": {"description": "Bookmark 7", "suggested_key": {"default": "Alt+F7"}},
+		"bookmark-toolbar-hotkey-8": {"description": "Bookmark 8", "suggested_key": {"default": "Alt+F8"}},
+		"bookmark-toolbar-hotkey-9": {"description": "Bookmark 9", "suggested_key": {"default": "Alt+F9"}}
+	}
+}

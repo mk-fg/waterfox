@@ -141,6 +141,26 @@ Available on AMO as well: `addons.mozilla.org/flush-site-data`_
 .. _addons.mozilla.org/flush-site-data: https://addons.mozilla.org/en-US/firefox/addon/flush-site-data/
 
 
+bookmark-toolbar-hotkeys
+````````````````````````
+
+Opens corresponding bookmarks or runs bookmarklets from Bookmark Toolbar
+(even when hidden) on Alt-F1, Alt-F2, etc keys, configurable via the usual
+"Manage Extension Shortcuts".
+
+Same idea as `bookmark-toolbar-shortcut`_ addon, but with support for ``javascript:...``
+bookmarklets_ (see `Bookmarklets to deal with annoying designs`_ post for some good examples),
+proper error handling/indication (via popup notification),
+and an updated manifest to include all permissions required for that.
+
+This addon plus `bookmarklets.js`_ below provide an easy to tweak and use
+harness to run small javascript snippets in context of arbitrary pages on-demand,
+and can easily replace most of ad-hoc "tweak/style page contents" addons.
+
+.. _bookmark-toolbar-shortcut: https://github.com/nuchi/bookmark-toolbar-shortcut
+.. _Bookmarklets to deal with annoying designs: https://www.arp242.net/bookmarklets.html
+
+
 proxy-toggle.local
 ``````````````````
 
