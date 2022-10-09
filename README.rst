@@ -272,12 +272,20 @@ specific domains or always running there, potentially slowing stuff down or
 breaking things.
 
 Great for a trivial in-page automation ops like "remove all images",
-"clear all position=fixed elements" or "make text black", and very easy
-to make and edit on-the-fly for whatever comes to mind.
+"clear all position=fixed elements" or "make text black/selectable/etc",
+and very easy to make and edit on-the-fly for whatever comes to mind.
+
+Other bookmarklet collections that I've come across and borrowed from:
+
+- `alanhogan/bookmarklets`_
+- `loikein/geeky-bookmarklet-collection`_
+- `squarefree.com/bookmarklets`_
 
 .. _bookmarklets: https://en.wikipedia.org/wiki/Bookmarklet
 .. _UserJS: https://openuserjs.org/
-
+.. _alanhogan/bookmarklets: https://github.com/alanhogan/bookmarklets/
+.. _loikein/geeky-bookmarklet-collection: https://github.com/loikein/geeky-bookmarklet-collection
+.. _squarefree.com/bookmarklets: https://www.squarefree.com/bookmarklets/
 
 
 Links to other external stuff

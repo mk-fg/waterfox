@@ -5,16 +5,19 @@
 // - "Customize Toolbar..." and drag bookmarks from toolbar to URL bar or such
 // - Set "Bookmarks Toolbar" -> "Never Show", tweak bookmarklet names to something short
 
-// readable and fixed from https://www.arp242.net/bookmarklets.html
-
 // Jfx - "fixed" from https://www.arp242.net/bookmarklets.html
 // Removes all position=fixed headers/sidebars obstructing stuff
 javascript:(() => document.querySelectorAll('*').forEach(e => {
 	let p = getComputedStyle(e).getPropertyValue('position');
 	if (p === 'fixed' || p === 'sticky') e.style.cssText += ' position: inherit !important' }))()
 
-// Jcc - "readable" from https://www.arp242.net/bookmarklets.html
-// Forces black color instead of gray for good contrast, as a lite alternative to reader mode
-javascript:(() => document.querySelectorAll('p, li, div').forEach(e => {
-	e.style.color = '#000';
-	e.style.font = '500 16px/1.7em sans-serif' }))()
+// Jsel - allows/fixes text selection on silly pages that try to disable it
+javascript:(() => {
+	document.head.appendChild(Object.assign( document.createElement('style'),
+		{type: "text/css", innerHTML: '*, p, div { user-select: text !important; }'} ));
+	let efn = () => true, text_inputs = ['text', 'password', 'email', 'number', 'tel', 'url'];
+	document.body.querySelectorAll("*").forEach(e => {
+		e.onseectstart = e.ondragstart = e.ondrag =
+			e.oncontextmenu = e.onmousedown = e.onmouseup = efn;
+		if (e.tagName === 'INPUT' && text_inputs.includes(e.type.toLowerCase())) {
+			e.removeAttribute("disabled"); e.onkeydown = e.onkeyup = efn } }) })()
