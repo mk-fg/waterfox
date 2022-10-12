@@ -4,6 +4,12 @@ waterfox
 .. contents::
   :backlinks: none
 
+Repository URLs:
+
+- https://github.com/mk-fg/waterfox
+- https://codeberg.org/mk-fg/waterfox
+- https://fraggod.net/code/git/waterfox
+
 
 
 Description

@@ -28,6 +28,7 @@ let cli_req_line_max_len = ref 2048 (* for "GET <url> HTTP/x.y" *)
 let kw_map = Hashtbl.create 4
 let () = (
 	Hashtbl.add kw_map "github-repo" "https://github.com/%q%";
+	Hashtbl.add kw_map "codeberg-repo" "https://codeberg.org/%q%";
 )
 
 
