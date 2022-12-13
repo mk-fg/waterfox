@@ -1,8 +1,9 @@
 'use strict';
 
 browser.browserAction.onClicked.addListener(
-	ev => browser.browsingData.remove( {},
-			{cache: true, cookies: true, indexedDB: true, localStorage: true, serviceWorkers: true} )
+	ev => browser.browsingData.remove({}, {
+			cache: true, cookies: true, localStorage: true,
+			indexedDB: true, serviceWorkers: true, pluginData: true })
 		.then(res => browser.tabs.query({}))
 		.then(tabs => tabs.forEach(
 			tab => browser.tabs.executeScript(tab.id, {code: 'sessionStorage.clear()'}) ))

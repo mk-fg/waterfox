@@ -117,27 +117,30 @@ flush-site-data
 ```````````````
 
 Adds button/hotkey (default - Alt+C) to flush all cache, cookies, localStorage,
-sessionStorage, indexedDB and serviceWorkers data - i.e. all tracking stuff that
-sites store in browser.
+sessionStorage, indexedDB, serviceWorkers and pluginData - i.e. all tracking
+stuff that sites store in browser.
 
 Alternative to Ctrl + Shift + Delete firefox hotkey, but without prompting/checkboxes,
-and also clearing sessionStorage in all tabs, not just history and persistent data.
+and also clearing sessionStorage in all tabs.
+
+It does not clear downloads/history, passwords and form autocomplete data
+that is (almost entirely) used in the browser UI, not by websites.
 
 | Does not ask any questions or limits its scope in any way.
 | Useful to log out of everything, like closing/reopening private browser window.
 |
 
-Looking at other similar extensions, haven't found one that does good-enough
-cleanup, which is literally this::
+Looking at other similar extensions, haven't found one that does good-enough cleanup,
+which seem to be pretty much this::
 
   browser.browsingData.remove({}, { cache: true, cookies: true,
-      indexedDB: true, localStorage: true, serviceWorkers: true })
+      indexedDB: true, localStorage: true, serviceWorkers: true, ... })
     .then(res => browser.tabs.query({}))
     .then(tabs => tabs.forEach(
       tab => browser.tabs.executeScript(tab.id, {code: 'sessionStorage.clear()'}) ))
 
-Most of them limit scope to some hacky list of domains derived from active tab,
-ignore stuff like localStorage, cache, indexedDB, or don't bother clearing
+Most of them limit scope to list of domains derived from active tab,
+ignore some stuff like localStorage, cache, indexedDB, or don't bother clearing
 sessionStorage in tabs.
 
 Issues 2s notification popup on success, and does console.error() on any failure.
