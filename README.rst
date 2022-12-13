@@ -294,10 +294,13 @@ Other bookmarklet collections that I've come across and borrowed from:
 .. _squarefree.com/bookmarklets: https://www.squarefree.com/bookmarklets/
 
 
-Links to other external stuff
------------------------------
+Links to some external stuff I also use
+---------------------------------------
 
-- `ff_mozlz4`_ - py3 script to decompress .mozlz4 files like ``search.json.mozlz4``.
+- ff-cli_ - command-line script to interact with firefox(-ish).
+
+  Allows to do things like list open tabs, bookmarks, compress/decompress
+  .mozlz4 files (e.g. ``search.json.mozlz4``) and such.
 
 - `AppArmor profile`_ - always nice to have for complex apps like browsers.
 
@@ -316,15 +319,18 @@ Links to other external stuff
   with just a slice + command name, instead of like 20 common/mandatory options
   needed with raw systemd-run interface.
 
-.. _ff_mozlz4: https://github.com/mk-fg/fgtk#ff_mozlz4
+- nbrpc_ - replacement for selective proxy enablement to route around various censorshit.
+
+.. _ff-cli: https://github.com/mk-fg/fgtk#ff-cli
 .. _AppArmor profile: https://github.com/mk-fg/apparmor-profiles/blob/master/profiles/waterfox
 .. _Waterfox Arch Linux PKGBUILD: https://github.com/mk-fg/archlinux-pkgbuilds/tree/master/waterfox
 .. _cgrc: https://github.com/mk-fg/fgtk#cgrc
+.. _nbrpc: https://github.com/mk-fg/name-based-routing-policy-controller
 
 
 
-Links to some outdated stuff
-----------------------------
+Links to other outdated stuff
+-----------------------------
 
 Mostly scripts and such that I've used with pre-Quantum Firefox,
 which allowed much more customization and had many other diffs in general.
