@@ -8,5 +8,5 @@ let accept_language_force = e => {
 	headers.push(accept_language_header)
 	return {requestHeaders: headers} }
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
+browser.webRequest.onBeforeSendHeaders.addListener(
 	accept_language_force, {urls: ['<all_urls>']}, ['blocking', 'requestHeaders'] )
