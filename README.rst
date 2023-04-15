@@ -180,9 +180,12 @@ http-version-icon_
 
 Shows tiny h3/h2/spdy/old protocol icon in the URL bar on the right.
 
-Unlike extensions in AMO, it actually checks x-quic header for HTTP/3
-(QUIC) detection, that I seem to have here in Waterfox G5.1.4 / 102+ ESR,
-and is also much simplier than typical obfuscated layers of JS/TS crap there.
+Checks for HTTP version in "HTTP/x 200 OK" status line first,
+and then also `X-Firefox-{HTTP3,SPDY} headers`_ (not sure why those exist),
+setting the indicator icon in the tab's URL bar accordingly.
+
+Can try it out on e.g. `http3.is page`_. Page reload (F5) might be needed
+for FF to pickup/remember alt-svc header and start using QUIC connection for it.
 
 Icons are tiny png files, which can be easily recolored using ImageMagick_
 command-line tools, for example, to make all icons yellow::
@@ -206,6 +209,9 @@ That will print mogrify-opts for rgb(17,234,120) color, use e.g.
 ``c = b'\x11\xEA\x78'`` to easily specify R,G,B channel values from
 a hexadecimal notation like #11EA78 instead.
 
+.. _X-Firefox-{HTTP3,SPDY} headers:
+	https://bugzilla.mozilla.org/show_bug.cgi?id=1696037
+.. _http3.is page: https://http3.is
 .. _ImageMagick: https://imagemagick.org/
 
 
