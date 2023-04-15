@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+	"name": "http-version-icon",
+	"description": "Display HTTP protocol icon in URL bar",
+	"version": "1",
+
+	"background": {"scripts": ["background.js"]},
+	"page_action": {
+		"browser_style": false,
+		"default_icon": {
+			"16": "icons/tab-proto-old-16.png",
+			"32": "icons/tab-proto-old-32.png" } },
+
+	"permissions": [
+		"tabs", "webNavigation", "webRequest", "<all_urls>" ],
+
+	"applications": {
+		"gecko": {
+			"id": "http-version-icon@fraggod.net",
+			"strict_min_version": "88.0"
+		}
+	}
+}

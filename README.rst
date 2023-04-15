@@ -50,8 +50,9 @@ All \*.local addon patches are usually just a bunch of overlay/replacement
 files, which can be used to replace ones in original .xpi archive.
 
 
-new-tab
-```````
+new-tab_
+````````
+.. _new-tab: new-tab
 
 Simple new-tab homepage with some non-eye-burning background image and JS checks
 for some parameters in `arkenfox/user.js`_ or similar must-have settings preset,
@@ -96,8 +97,9 @@ direct file:// access from extensions.
 .. _userChrome.css: https://www.userchrome.org/
 
 
-force-english-language
-``````````````````````
+force-english-language_
+```````````````````````
+.. _force-english-language: force-english-language
 
 Forces Accept-Language and navigator.language(s) header/js values to identify
 browser as using english locale, despite privacy.resistFingerprinting setting
@@ -113,8 +115,9 @@ but does not add it), and is a lot more heavyweight than 10 JS lines here.
 .. _languageswitch: https://addons.mozilla.org/en-US/firefox/addon/languageswitch/
 
 
-flush-site-data
-```````````````
+flush-site-data_
+````````````````
+.. _flush-site-data: flush-site-data
 
 Adds button/hotkey (default - Alt+C) to flush all cache, cookies, localStorage,
 sessionStorage, indexedDB, serviceWorkers and pluginData - i.e. all tracking
@@ -150,8 +153,9 @@ Available on AMO as well: `addons.mozilla.org/flush-site-data`_
 .. _addons.mozilla.org/flush-site-data: https://addons.mozilla.org/en-US/firefox/addon/flush-site-data/
 
 
-bookmark-toolbar-hotkeys
-````````````````````````
+bookmark-toolbar-hotkeys_
+`````````````````````````
+.. _bookmark-toolbar-hotkeys: bookmark-toolbar-hotkeys
 
 Opens corresponding bookmarks or runs bookmarklets from Bookmark Toolbar
 (even when hidden) on Alt-F1, Alt-F2, etc keys, configurable via the usual
@@ -170,8 +174,44 @@ and can easily replace most of ad-hoc "tweak/style page contents" addons.
 .. _Bookmarklets to deal with annoying designs: https://www.arp242.net/bookmarklets.html
 
 
-proxy-toggle.local
+http-version-icon_
 ``````````````````
+.. _http-version-icon: http-version-icon
+
+Shows tiny h3/h2/spdy/old protocol icon in the URL bar on the right.
+
+Unlike extensions in AMO, it actually checks x-quic header for HTTP/3
+(QUIC) detection, that I seem to have here in Waterfox G5.1.4 / 102+ ESR,
+and is also much simplier than typical obfuscated layers of JS/TS crap there.
+
+Icons are tiny png files, which can be easily recolored using ImageMagick_
+command-line tools, for example, to make all icons yellow::
+
+  % cd http-version-icon
+  % cp icons-src/tab-proto-*-{16,32}.png .
+  % mogrify -channel R -evaluate set 65535 *.png
+  % zip http-version-icon@fraggod.net.xpi *.{png,js,json}
+
+This works by setting 16-bit (0-65535) red (R) color-channel value in all icon files,
+on top of current greenish #11EA78 color, producing #FFEA78 yellow result.
+
+To make a "mogrify" command for any other color values you like, following lines can
+be used in the python shell (one that pops-up when running ``python`` w/o arguments)::
+
+  >>> c = 17, 234, 120 ; n = (2**16 - 1) / 255
+  >>> print(' '.join( f'-channel {c} -evaluate set {v}'
+        for c,v in zip('RGB', (round(n*c) for c in c)) ))
+
+That will print mogrify-opts for rgb(17,234,120) color, use e.g.
+``c = b'\x11\xEA\x78'`` to easily specify R,G,B channel values from
+a hexadecimal notation like #11EA78 instead.
+
+.. _ImageMagick: https://imagemagick.org/
+
+
+proxy-toggle.local_
+```````````````````
+.. _proxy-toggle.local: proxy-toggle.local
 
 Icons' tweak for proxy-toggle_ addon, replacing black ones with green/red ones,
 depending on whether proxy is enabled/disabled (note - red=enabled).
@@ -189,8 +229,9 @@ Misc helpers
 Various useful helper tools, data and configuration snippets.
 
 
-redirector.ml
-`````````````
+redirector.ml_
+``````````````
+.. _redirector.ml: redirector.ml
 
 Simple liteweight HTTP stub daemon to serve redirects, translating requests with
 encoded search queries to proper URLs.
@@ -227,8 +268,9 @@ specified timeout of inactivity, to avoid hanging around if rarely used
 .. _mk-fg/de-setup repo: https://github.com/mk-fg/de-setup
 
 
-url-handler.c
-`````````````
+url-handler.c_
+``````````````
+.. _url-handler.c: url-handler.c
 
 Strict URL-scheme-dispatcher binary for browser or similar link-clicky app.
 
@@ -270,8 +312,9 @@ Being compiled C code, it is a very fast (<1ms) and light wrapper (15K with glib
 .. _user.js: http://kb.mozillazine.org/User.js_file
 
 
-bookmarklets.js
-```````````````
+bookmarklets.js_
+````````````````
+.. _bookmarklets.js: bookmarklets.js
 
 Random bookmarklets_ collected from somewhere or ad-hoc made to fix some local issue.
 

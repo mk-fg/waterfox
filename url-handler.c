@@ -23,7 +23,7 @@
 #define MAX_LEN_HANDLER 200
 
 #ifndef h
-#define h ""
+#define h
 #endif
 #define _STR(x) #x
 #define STR(x) _STR(x)
