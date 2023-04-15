@@ -1,14 +1,14 @@
-// Displays tiny h3/h2/spdy/old protocol icon in the URL bar on the right
+// Displays tiny h3/h2/spdy/old protocol icon in the URL bar on the right.
 //
-// To tweak icon colors, use this, for example, to make them all red:
-//   cp icons-src/tab-proto-*-{16,32}.png . && mogrify -channel R -evaluate add 65535 *.png
-// To calc color-offset line, run this in python shell:
-//   c = 17, 234, 120 ; n = (2**16 - 1) / 255
+// To tweak icon colors, for example, to make them all red:
+//   mogrify -channel R -evaluate set 65535 -channel G -evaluate set 0 -channel B -evaluate set 0 *.png
+// To make magrify command opts for a typical hex color, run this in a python repl shell:
+//   c = b'\x11\xEA\x78' ; n = (2**16 - 1) / 255
 //   print(' '.join(f'-channel {c} -evaluate add {v}' for c,v in zip('RGB', (round(n*c) for c in c))))
 //
 'use strict'
 
-let tab_proto = new Map() // {tab_id: 'h3' / 'h2' / 'spdy', ...}
+let tab_proto = new Map() // {tab_id: 'h3' / 'h2' / 'spdy' / 'old', ...}
 
 
 let http_ver_hdrs = {'x-firefox-http3': 'h3', 'x-firefox-spdy': 'h2'}

@@ -178,7 +178,7 @@ http-version-icon_
 ``````````````````
 .. _http-version-icon: http-version-icon
 
-Shows tiny h3/h2/spdy/old protocol icon in the URL bar on the right.
+Shows tiny colored h3/h2/spdy/old protocol icon in the URL bar on the right.
 
 Checks for HTTP version in "HTTP/x 200 OK" status line first,
 and then also `X-Firefox-{HTTP3,SPDY} headers`_ (not sure why those exist),
@@ -187,27 +187,29 @@ setting the indicator icon in the tab's URL bar accordingly.
 Can try it out on e.g. `http3.is page`_. Page reload (F5) might be needed
 for FF to pickup/remember alt-svc header and start using QUIC connection for it.
 
-Icons are tiny png files, which can be easily recolored using ImageMagick_
-command-line tools, for example, to make all icons yellow::
+Protocol icons are tiny png files next to the script, which can be easily
+recolored for specific theme background using ImageMagick_ command-line tools,
+for example, to make all icons red::
 
   % cd http-version-icon
-  % cp icons-src/tab-proto-*-{16,32}.png .
-  % mogrify -channel R -evaluate set 65535 *.png
-  % zip http-version-icon@fraggod.net.xpi *.{png,js,json}
+  % mogrify -channel R -evaluate set 65535 \
+      -channel G -evaluate set 0 -channel B -evaluate set 0 *.png
+  % zip http-version-icon.xpi *.{png,js,json}
 
-This works by setting 16-bit (0-65535) red (R) color-channel value in all icon files,
-on top of current greenish #11EA78 color, producing #FFEA78 yellow result.
+This works by setting red (R) color-channel value to max and G/B to 0 for all
+pixels in all icon files, producing #FF0000 bright-red result. Note that
+ImageMagick uses 0-65535 16b channels, not 0-255 8b ones like in hex notation.
 
-To make a "mogrify" command for any other color values you like, following lines can
-be used in the python shell (one that pops-up when running ``python`` w/o arguments)::
+To make a "mogrify" command for any other color values, following lines can be
+used in the python REPL (pops-up when running ``python`` w/o arguments)::
 
   >>> c = 17, 234, 120 ; n = (2**16 - 1) / 255
   >>> print(' '.join( f'-channel {c} -evaluate set {v}'
         for c,v in zip('RGB', (round(n*c) for c in c)) ))
 
-That will print mogrify-opts for rgb(17,234,120) color, use e.g.
-``c = b'\x11\xEA\x78'`` to easily specify R,G,B channel values from
-a hexadecimal notation like #11EA78 instead.
+That will print mogrify-opts for rgb(17,234,120) color.
+Use e.g. ``c = b'\x11\xEA\x78'`` to easily specify R,G,B channel values
+from a hexadecimal notation like #11EA78 instead.
 
 .. _X-Firefox-{HTTP3,SPDY} headers:
 	https://bugzilla.mozilla.org/show_bug.cgi?id=1696037
