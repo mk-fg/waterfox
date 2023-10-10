@@ -351,6 +351,8 @@ Other bookmarklet collections that I've come across and borrowed from:
 Links to some external stuff I also use
 ---------------------------------------
 
+- `arkenfox/user.js`_ - to disable misfeatures that creep into firefox over time.
+
 - ff-cli_ - command-line script to interact with firefox(-ish).
 
   Allows to do things like list open tabs, bookmarks, compress/decompress
