@@ -212,7 +212,7 @@ Use e.g. ``c = b'\x11\xEA\x78'`` to easily specify R,G,B channel values
 from a hexadecimal notation like #11EA78 instead.
 
 .. _X-Firefox-{HTTP3,SPDY} headers:
-	https://bugzilla.mozilla.org/show_bug.cgi?id=1696037
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1696037
 .. _http3.is page: https://http3.is
 .. _ImageMagick: https://imagemagick.org/
 
@@ -369,6 +369,9 @@ Links to some external stuff I also use
   | Builds it from .tar.gz release archive, not the humongous and slow git checkout.
   | Can have some local patches/tweaks.
 
+- ca-certificates-whitelist-filter_ - tool to cleanup garbage certs from Web-PKI list
+  of root CAs, which is all but like 6-10 CAs used for everything (at least as of i2023).
+
 - cgrc_ - systemd-run wrapper for apps that can use some cgroup-limits, like browsers.
 
   Has a bunch of extra functionality on top of systemd-run and generally usable
@@ -418,10 +421,12 @@ which allowed much more customization and had many other diffs in general.
   but less needed now with Certificate Transparency efforts and Let's Encrypt,
   both mitigating main issues with such centralized model somewhat.
 
-  See `Certificate Pinner`_ addon for a modern, simplier and a bit more manual
-  opt-in solution for this task.
+  See `Certificate Pinner`_ addon for a modern, simpler and a bit more manual
+  opt-in solution for this task, or ca-certificates-whitelist-filter_ tool to
+  also do it system-wide.
 
 .. _ff_backup: https://github.com/mk-fg/fgtk#ff_backup
 .. _firefox-homepage-generator: https://github.com/mk-fg/firefox-homepage-generator
 .. _convergence: https://github.com/mk-fg/convergence
 .. _Certificate Pinner: https://gitlab.com/heurekus/certificate-pinner-for-firefox/
+.. _ca-certificates-whitelist-filter: https://github.com/mk-fg/ca-certificates-whitelist-filter
