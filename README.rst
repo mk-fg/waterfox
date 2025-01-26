@@ -70,7 +70,7 @@ Tabs will still momentarily flash white on opening though,
 which can be fixed by something like this in `userContent.css`_::
 
   @-moz-document url-prefix(about:blank) {
-    body { background-color:#18343f !important; }
+    body { background-color: #18343f !important; }
   }
 
 None of this would affect browser-start page btw, which can be changed via
@@ -237,45 +237,6 @@ Misc helpers
 Various useful helper tools, data and configuration snippets.
 
 
-redirector.ml_
-``````````````
-.. _redirector.ml: redirector.ml
-
-Simple liteweight HTTP stub daemon to serve redirects, translating requests with
-encoded search queries to proper URLs.
-
-Intended to work around Firefox search plugins' limitation of not allowing
-non-encoded search queries, so any URL-building via search keywords is limited
-to GET/POST keywords only.
-
-This workaround is to run simple redirector httpd on localhost, so that
-e.g. ``gh mk-fg/waterfox`` query in url bar would translate to
-``localhost:8080/github-repo/mk-fg%2Fwaterfox`` (note how query gets
-url-escaped) and that'd redirect to ``https://github.com/mk-fg/waterfox``
-(this repo on github), undoing the query url-escaping in this simple case.
-
-Any kind of more complex shortcut-expanding and URL-making logic can be
-added here later as well, limited only by imagination and convenience,
-potentially turning firefox search bar into some kind of command line.
-
-Written in OCaml_ to be simple, but relatively fast (native binary)
-and not too heavy on memory use (~1M), unlike more typical scripts.
-
-Can be compiled with::
-
-  % ocamlopt -o redirector -O2 unix.cmxa str.cmxa redirector.ml
-  % strip redirector
-
-Run with -h/--help for info on command-line options.
-
-Supports systemd socket-activation mode to only start on-demand and exit after
-specified timeout of inactivity, to avoid hanging around if rarely used
-(see ff-redirector.socket + .service in `mk-fg/de-setup repo`_ for unit examples).
-
-.. _OCaml: https://ocaml.org/
-.. _mk-fg/de-setup repo: https://github.com/mk-fg/de-setup
-
-
 url-handler.c_
 ``````````````
 .. _url-handler.c: url-handler.c
@@ -346,6 +307,7 @@ Other bookmarklet collections that I've come across and borrowed from:
 .. _alanhogan/bookmarklets: https://github.com/alanhogan/bookmarklets/
 .. _loikein/geeky-bookmarklet-collection: https://github.com/loikein/geeky-bookmarklet-collection
 .. _squarefree.com/bookmarklets: https://www.squarefree.com/bookmarklets/
+
 
 
 Links to some external stuff I also use
@@ -425,8 +387,19 @@ which allowed much more customization and had many other diffs in general.
   opt-in solution for this task, or ca-certificates-whitelist-filter_ tool to
   also do it system-wide.
 
+- redirector.ml_ - simple httpd I've used on localhost to work around firefox
+  search engine limitations of always quoting query string, to make e.g.
+  ``gh user/repo`` pseudo-search open ``github.com/user/repo`` URL,
+  via redirect from localhost that undoes url-quoting.
+
+  Not needed since I learned that you can put %s and %S into firefox bookmarks,
+  and add keywords to those, to exactly same effect, and without that limitation
+  with %S (%s - url-escaped, %S - as-is).
+  Also no need to edit search.json to effectively add new search engines that way.
+
 .. _ff_backup: https://github.com/mk-fg/fgtk#ff_backup
 .. _firefox-homepage-generator: https://github.com/mk-fg/firefox-homepage-generator
 .. _convergence: https://github.com/mk-fg/convergence
 .. _Certificate Pinner: https://gitlab.com/heurekus/certificate-pinner-for-firefox/
 .. _ca-certificates-whitelist-filter: https://github.com/mk-fg/ca-certificates-whitelist-filter
+.. _redirector.ml: https://github.com/mk-fg/waterfox/blob/70b9444/redirector.ml
