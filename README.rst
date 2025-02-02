@@ -119,6 +119,10 @@ flush-site-data_
 ````````````````
 .. _flush-site-data: flush-site-data
 
+| **Does not seem to work well - leaves "morgue" files and HSTS/request caches behind.**
+| Might be fixable, see `github issue-2`_ for more details.
+|
+
 Adds button/hotkey (default - Alt+C) to flush all cache, cookies, localStorage,
 sessionStorage, indexedDB, serviceWorkers and pluginData - i.e. all tracking
 stuff that sites store in browser.
@@ -148,9 +152,7 @@ sessionStorage in tabs.
 
 Issues 2s notification popup on success, and does console.error() on any failure.
 
-Available on AMO as well: `addons.mozilla.org/flush-site-data`_
-
-.. _addons.mozilla.org/flush-site-data: https://addons.mozilla.org/en-US/firefox/addon/flush-site-data/
+.. _github issue-2: https://github.com/mk-fg/waterfox/issues/2
 
 
 bookmark-toolbar-hotkeys_
