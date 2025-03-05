@@ -17,7 +17,7 @@ javascript:(() => {
 		{type: "text/css", innerHTML: '*, p, div { user-select: text !important; }'} ));
 	let efn = () => true, text_inputs = ['text', 'password', 'email', 'number', 'tel', 'url'];
 	document.body.querySelectorAll("*").forEach(e => {
-		e.onseectstart = e.ondragstart = e.ondrag =
+		e.onselectstart = e.ondragstart = e.ondrag =
 			e.oncontextmenu = e.onmousedown = e.onmouseup = efn;
 		if (e.tagName === 'INPUT' && text_inputs.includes(e.type.toLowerCase())) {
 			e.removeAttribute("disabled"); e.onkeydown = e.onkeyup = efn } }) })()
