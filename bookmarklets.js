@@ -14,10 +14,10 @@ javascript:(() => document.querySelectorAll('*').forEach(e => {
 // Jsel - allows/fixes text selection on silly pages that try to disable it
 javascript:(() => {
 	document.head.appendChild(Object.assign( document.createElement('style'),
-		{type: "text/css", innerHTML: '*, p, div { user-select: text !important; }'} ));
+		{type: 'text/css', innerHTML: '*, p, div { user-select: text !important; }'} ));
 	let efn = () => true, text_inputs = ['text', 'password', 'email', 'number', 'tel', 'url'];
-	document.body.querySelectorAll("*").forEach(e => {
+	document.body.querySelectorAll('*').forEach(e => {
 		e.onselectstart = e.ondragstart = e.ondrag =
 			e.oncontextmenu = e.onmousedown = e.onmouseup = efn;
 		if (e.tagName === 'INPUT' && text_inputs.includes(e.type.toLowerCase())) {
-			e.removeAttribute("disabled"); e.onkeydown = e.onkeyup = efn } }) })()
+			e.removeAttribute('disabled'); e.onkeydown = e.onkeyup = efn } }) })()
