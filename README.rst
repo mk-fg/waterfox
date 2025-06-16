@@ -223,9 +223,10 @@ proxy-toggle.local_
 ```````````````````
 .. _proxy-toggle.local: proxy-toggle.local
 
-Added keyboard shortcut and icons' tweak for proxy-toggle-button_ addon,
-replacing indistinct blue/green shields with different green/red shapes,
-depending on whether proxy is enabled/disabled (red=enabled).
+Simplified copy of already-trivial proxy-toggle-button_ addon,
+with added keyboard shortcut and icons' tweak, replacing indistinct
+blue/green shields with different green/red shapes, depending on whether
+proxy is enabled/disabled (red=enabled).
 
 Also changed tooltip to clearly tell state and what action will be taken,
 and replaced a separate popup page there with notification.
@@ -345,13 +346,15 @@ Links to some external stuff I also use
   with just a slice + command name, instead of like 20 common/mandatory options
   needed with raw systemd-run interface.
 
-- nbrpc_ - replacement for selective proxy enablement to route around various censorshit.
+- nbrpc_ and nodpi-https-proxy_ - replacement for selective proxy toggling,
+  to route around various censorshit.
 
 .. _ff-cli: https://github.com/mk-fg/fgtk#ff-cli
 .. _AppArmor profile: https://github.com/mk-fg/apparmor-profiles/blob/master/profiles/waterfox
 .. _Waterfox Arch Linux PKGBUILD: https://github.com/mk-fg/archlinux-pkgbuilds/tree/master/waterfox
 .. _cgrc: https://github.com/mk-fg/fgtk#cgrc
 .. _nbrpc: https://github.com/mk-fg/name-based-routing-policy-controller
+.. _nodpi-https-proxy: https://github.com/mk-fg/fgtk#hdr-nodpi-https-proxy
 
 
 
