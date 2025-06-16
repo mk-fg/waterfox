@@ -223,13 +223,16 @@ proxy-toggle.local_
 ```````````````````
 .. _proxy-toggle.local: proxy-toggle.local
 
-Icons' tweak for proxy-toggle_ addon, replacing black ones with green/red ones,
-depending on whether proxy is enabled/disabled (note - red=enabled).
+Added keyboard shortcut and icons' tweak for proxy-toggle-button_ addon,
+replacing indistinct blue/green shields with different green/red shapes,
+depending on whether proxy is enabled/disabled (red=enabled).
 
-Useful with any dark background theme, which makes default all-black icons
-nearly invisible, plus color-coding is nice.
+Also changed tooltip to clearly tell state and what action will be taken,
+and replaced a separate popup page there with notification.
 
-.. _proxy-toggle: https://addons.mozilla.org/en-US/firefox/addon/proxy-toggle/
+Addon simply toggles proxy settings between System (no proxy) and Manual (enabled).
+
+.. _proxy-toggle-button: https://addons.mozilla.org/en-US/firefox/addon/proxy-toggle-button/
 
 
 

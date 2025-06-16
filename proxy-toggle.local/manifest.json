@@ -1,24 +1,22 @@
 {
 	"manifest_version": 2,
 	"name": "[local] Proxy Toggle",
-	"version": "1.2.1",
-	"description": "Toggle between direct connection and using a proxy server.",
+	"version": "1.3",
+
+	"description": "Button to switch between system-set (off) and manually-set (on) proxy.",
 	"icons": {
-		"48": "icons/p1.svg",
-		"96": "icons/p1.svg"
+		"48": "proxy-off.svg",
+		"96": "proxy-off.svg"
 	},
-	"permissions": [
-		"storage",
-		"proxy",
-		"<all_urls>",
-		"webRequest",
-		"webRequestBlocking"
-	],
+
+	"permissions": ["proxy", "notifications"],
+
 	"browser_action": {
 		"browser_style": true,
-		"default_icon": "icons/p1.svg",
-		"default_title": "Proxy Toggle"
+		"default_icon": "proxy-off.svg",
+		"default_title": "Proxy DISABLED, click to enable"
 	},
+
 	"commands": {
 		"_execute_browser_action": {
 			"suggested_key": {
@@ -27,19 +25,15 @@
 			"description": "Toggle proxy on/off"
 		}
 	},
+
 	"background": {
-		"scripts": [
-			"background.js"
-		]
+		"scripts": ["background.js"]
 	},
-	"options_ui": {
-		"page": "settings.html",
-		"browser_style": true
-	},
+
 	"applications": {
 		"gecko": {
 			"id": "proxy-toggle.local@fraggod.net",
-			"strict_min_version": "60.0"
+			"strict_min_version": "67.0"
 		}
 	}
 }
