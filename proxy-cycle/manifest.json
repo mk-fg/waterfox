@@ -1,0 +1,39 @@
+{
+	"manifest_version": 2,
+	"name": "[local] Proxy Cycle",
+	"version": "1.0",
+
+	"description": "Button to cycle between hardcoded proxy presets.",
+	"icons": {
+		"48": "p0.svg",
+		"96": "p0.svg"
+	},
+
+	"permissions": ["proxy", "notifications"],
+
+	"browser_action": {
+		"browser_style": true,
+		"default_icon": "p0.svg",
+		"default_title": "Proxy is DISABLED"
+	},
+
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+S"
+			},
+			"description": "Cycle proxy presets"
+		}
+	},
+
+	"background": {
+		"scripts": ["background.js"]
+	},
+
+	"applications": {
+		"gecko": {
+			"id": "proxy-cycle@fraggod.net",
+			"strict_min_version": "67.0"
+		}
+	}
+}

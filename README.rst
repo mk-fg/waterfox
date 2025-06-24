@@ -233,6 +233,27 @@ Addon simply toggles proxy settings between System (no proxy) and Manual (enable
 .. _proxy-toggle-button: https://addons.mozilla.org/en-US/firefox/addon/proxy-toggle-button/
 
 
+proxy-cycle_
+`````````````
+
+More advanced (but still trivial) _proxy-toggle version that cycles between
+hardcoded settings instead of just two system/manual variants.
+
+Proxy settings and labels are configured in "proxies" list at the top of background.js,
+as per `proxy.settings webext API description`_ - no built-in UIs or anything.
+
+p<N>.svg is used as icon for each corresponding preset-N. Simple number-based
+icons in the repository are exported via inkscape_ from `numbers.svg file`_.
+
+See addons like ZeroOmega_ for a more advanced proxy handling.
+Didn't bother with these myself mostly because of complexity for my still-simple needs.
+
+.. _proxy.settings webext API description:
+  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/proxy/settings
+.. _inkscape: https://inkscape.org/
+.. _numbers.svg file: proxy-cycle/numbers.svg
+.. _ZeroOmega: https://github.com/zero-peak/ZeroOmega
+
 
 Misc helpers
 ------------
