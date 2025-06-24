@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "[local] Proxy Toggle",
-	"version": "1.3",
+	"version": "1.0",
 
 	"description": "Button to switch between system-set (off) and manually-set (on) proxy.",
 	"icons": {
@@ -14,13 +14,13 @@
 	"browser_action": {
 		"browser_style": true,
 		"default_icon": "proxy-off.svg",
-		"default_title": "Proxy DISABLED, click to enable"
+		"default_title": "Proxy is DISABLED, click to enable"
 	},
 
 	"commands": {
 		"_execute_browser_action": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+Y"
+				"default": "Ctrl+Shift+S"
 			},
 			"description": "Toggle proxy on/off"
 		}
@@ -32,7 +32,7 @@
 
 	"applications": {
 		"gecko": {
-			"id": "proxy-toggle.local@fraggod.net",
+			"id": "proxy-toggle@fraggod.net",
 			"strict_min_version": "67.0"
 		}
 	}

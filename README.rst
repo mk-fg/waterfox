@@ -46,9 +46,6 @@ Any of these can be zipped into xpi like this::
 | This won't work in official FF due to hardcoded mandatory extension signing.
 |
 
-All \*.local addon patches are usually just a bunch of overlay/replacement
-files, which can be used to replace ones in original .xpi archive.
-
 
 new-tab_
 ````````
@@ -219,9 +216,9 @@ from a hexadecimal notation like #11EA78 instead.
 .. _ImageMagick: https://imagemagick.org/
 
 
-proxy-toggle.local_
-```````````````````
-.. _proxy-toggle.local: proxy-toggle.local
+proxy-toggle_
+`````````````
+.. _proxy-toggle: proxy-toggle
 
 Simplified copy of already-trivial proxy-toggle-button_ addon,
 with added keyboard shortcut and icons' tweak, replacing indistinct
