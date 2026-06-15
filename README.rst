@@ -165,9 +165,9 @@ bookmarklets_ (see `Bookmarklets to deal with annoying designs`_ post for some g
 proper error handling/indication (via popup notification),
 and an updated manifest to include all permissions required for that.
 
-This addon plus `bookmarklets.js`_ below provide an easy to tweak and use
+This addon plus snippets like in `bookmarklets.js`_ file provide an easy to use/tweak
 harness to run small javascript snippets in context of arbitrary pages on-demand,
-and can easily replace most of ad-hoc "tweak/style page contents" addons.
+and can easily replace many ad-hoc "tweak/style page contents" or UserScript addons.
 
 .. _bookmark-toolbar-shortcut: https://github.com/nuchi/bookmark-toolbar-shortcut
 .. _Bookmarklets to deal with annoying designs: https://www.arp242.net/bookmarklets.html
@@ -237,7 +237,7 @@ proxy-cycle_
 `````````````
 
 More advanced (but still trivial) _proxy-toggle version that cycles between
-hardcoded settings instead of just two system/manual variants.
+any number of hardcoded settings instead of just two system/manual variants.
 
 Proxy settings and labels are configured in "proxies" list at the top of background.js,
 as per `proxy.settings webext API description`_ - no built-in UIs or anything.

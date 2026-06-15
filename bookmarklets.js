@@ -1,5 +1,6 @@
 //// --- JS here MUST be semicolon-ified to work, as it gets auto-squeezed into one line in bookmark ---
 
+// Scripts can be pasted as regular bookmark URLs into "Bookmarks Toolbar" folder, with "javascript:" prefix
 // To move those from a separate/unnecessary bookmarks-toolbar:
 // - Right-click on empty space in tab bar, set "Bookmarks Toolbar" -> "Only show on New Tabs"
 // - "Customize Toolbar..." and drag bookmarks from toolbar to URL bar or such
@@ -21,3 +22,8 @@ javascript:(() => {
 			e.oncontextmenu = e.onmousedown = e.onmouseup = efn;
 		if (e.tagName === 'INPUT' && text_inputs.includes(e.type.toLowerCase())) {
 			e.removeAttribute('disabled'); e.onkeydown = e.onkeyup = efn } }) })()
+
+// Jkeys - disable all keyboard overrides
+// For example when pages do custom (Page-)Up/Down crap to do entirely different thing (e.g. mastodon)
+document.addEventListener('keydown', e => {
+	e.cancelBubble = true; e.stopImmediatePropagation(); return false; }, true)
