@@ -234,9 +234,10 @@ Addon simply toggles proxy settings between System (no proxy) and Manual (enable
 
 
 proxy-cycle_
-`````````````
+````````````
+.. _proxy-cycle: proxy-cycle
 
-More advanced (but still trivial) _proxy-toggle version that cycles between
+More advanced (but still trivial) proxy-toggle version that cycles between
 any number of hardcoded settings instead of just two system/manual variants.
 
 Proxy settings and labels are configured in "proxies" list at the top of background.js,
@@ -246,13 +247,18 @@ p<N>.svg is used as icon for each corresponding preset-N. Simple number-based
 icons in the repository are exported via inkscape_ from `numbers.svg file`_.
 
 See addons like ZeroOmega_ for a more advanced proxy handling.
-Didn't bother with these myself mostly because of complexity for my still-simple needs.
+Didn't bother with these myself mostly because of extra complexity at a wrong
+level - better approach for me is using internal proxy name(s) like "proxy.local",
+and switch where such name(s) point to, as well as `permanently routing some things
+around on a network level`_, which works more universally than for just one browser.
 
 .. _proxy.settings webext API description:
   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/proxy/settings
 .. _inkscape: https://inkscape.org/
 .. _numbers.svg file: proxy-cycle/numbers.svg
 .. _ZeroOmega: https://github.com/zero-peak/ZeroOmega
+.. _permanently routing some things around on a network level:
+  https://github.com/mk-fg/name-based-routing-policy-controller
 
 
 Misc helpers
@@ -356,7 +362,7 @@ Links to some external stuff I also use
   | Can have some local patches/tweaks.
 
 - ca-certificates-whitelist-filter_ - tool to cleanup garbage certs from Web-PKI list
-  of root CAs, which is all but like 6-10 CAs used for everything (at least as of i2023).
+  of root CAs, which is all but like 6-10 CAs used for everything (at least as of 2023).
 
 - cgrc_ - systemd-run wrapper for apps that can use some cgroup-limits, like browsers.
 
