@@ -46,6 +46,18 @@ Any of these can be zipped into xpi like this::
 | This won't work in official FF due to hardcoded mandatory extension signing.
 |
 
+And as scrolling past big pointless "... could not be verified for use" warnings
+gets annoying in about:addons Ctrl-Shift-A list, there's an easy `userContent.css`_
+hack to hide them all (see also `@document rules`_)::
+
+  @-moz-document url(about:addons) {
+    moz-message-bar.addon-card-message[data-l10n-id="details-notification-unsigned2"]
+    { display: none !important; }
+  }
+
+.. _userContent.css: https://kb.mozillazine.org/index.php?title=UserContent.css
+.. _@document rules: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@document
+
 
 new-tab_
 ````````
@@ -66,7 +78,7 @@ white screen is an acceptable default was (or is) probably blind (by now) :)
 Tabs will still momentarily flash white on opening though,
 which can be fixed by something like this in `userContent.css`_::
 
-  @-moz-document url-prefix(about:blank) {
+  @-moz-document url(about:blank) {
     body { background-color: #18343f !important; }
   }
 
@@ -90,7 +102,6 @@ direct file:// access from extensions.
 
 .. _arkenfox/user.js: https://github.com/arkenfox/user.js
 .. _nativeMessaging: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging
-.. _UserContent.css: http://kb.mozillazine.org/index.php?title=UserContent.css
 .. _userChrome.css: https://www.userchrome.org/
 
 
