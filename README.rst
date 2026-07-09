@@ -446,3 +446,32 @@ which allowed much more customization and had many other diffs in general.
 .. _Certificate Pinner: https://gitlab.com/heurekus/certificate-pinner-for-firefox/
 .. _ca-certificates-whitelist-filter: https://github.com/mk-fg/ca-certificates-whitelist-filter
 .. _redirector.ml: https://github.com/mk-fg/waterfox/blob/70b9444/redirector.ml
+
+
+Other useful addons
+-------------------
+
+Should be easy to look these up on addons.mozilla.org_ or such.
+
+- uBlock Origin
+
+- uMatrix - or some maintained fork of it
+
+- SingleFile
+
+- Duplicate Tab Shortcut
+
+- Mouse Gesture Events
+
+- Redirector
+
+- better-history-ng - has `barisgirismen/firefox-better-history-ng`_ fork with nicer search
+
+- Neat URL
+
+- cookies.txt - to make cookies file for yt-dlp_
+
+.. _addons.mozilla.org: https://addons.mozilla.org/
+.. _barisgirismen/firefox-better-history-ng:
+  https://github.com/barisgirismen/firefox-better-history-ng/
+.. _yt-dlp: https://github.com/yt-dlp/yt-dlp
